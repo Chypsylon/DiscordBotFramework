@@ -25,7 +25,13 @@ public class CommandChatListener implements MessageCreateListener {
             String[] messageParts = message.split(" ");
 
             String command = messageParts[0].substring(1);
-            String[] args = message.replace(messageParts[0] + " ", "").split(" ");
+
+            String[] args;
+            if(message.split(" ").length > 1) {
+                args = message.replace(messageParts[0] + " ", "").split(" ");
+            } else {
+                args = new String[0];
+            }
 
             if(commandManager.getCommandsMap().containsKey(command)) {
                     commandManager.getCommandsMap().get(command).execute(
