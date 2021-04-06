@@ -20,7 +20,10 @@ public class DiscordBot {
         this.token = token;
         this.commandPrefix = commandPrefix;
 
-        this.discordApi = new DiscordApiBuilder().setToken(token).login().join();
+        this.discordApi = new DiscordApiBuilder()
+                .setToken(token)
+                .login()
+                .join();
         this.commandManager = new CommandManager();
 
         discordApi.addMessageCreateListener(new CommandChatListener(this, this.commandManager));
